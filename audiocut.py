@@ -2,7 +2,7 @@ import librosa
 import soundfile as sf
 import os
 
-# Trims the audio to a 30s sample taken from the middle of the file
+# Trims the audio to a 15s sample taken from the middle of the file
 def trim_audio(filepath, duration=15):
     y, sr = librosa.load(filepath, sr=16000)
 
@@ -19,7 +19,7 @@ def trim_audio(filepath, duration=15):
 
 
 # path to genre folder
-folder_path = "data/forro"  # Caminho da pasta com os arquivos
+folder_path = "data/rock"  # Caminho da pasta com os arquivos
 
 # Iterates over all the elements
 for filename in os.listdir(folder_path):
