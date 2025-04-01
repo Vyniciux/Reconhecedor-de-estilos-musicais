@@ -19,7 +19,7 @@ def trim_audio(filepath, duration=15):
 
 
 # path to genre folder
-folder_path = "data/rock"  # Caminho da pasta com os arquivos
+folder_path = "data/frevo"  # Caminho da pasta com os arquivos
 
 # Iterates over all the elements
 for filename in os.listdir(folder_path):
