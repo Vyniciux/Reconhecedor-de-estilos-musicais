@@ -3,6 +3,7 @@ import yt_dlp
 import soundfile as sf
 import librosa
 import ffmpeg
+import glob
 
 def download_music(music_url, output_dir):
     # Configurações do yt-dlp
@@ -52,12 +53,38 @@ def trim_audio(filepath, duration=30):
     sf.write(filepath, y, sr)
     print(f"Arquivo cortado (metade): {filepath}")
 
+def trim_audio_3_in_parts(folder, duration=15):
+    # Trims the audio to a 15s sample taken from the middle of the file
+
+    filepath = ''
+    for file in os.listdir(folder):
+        if file.endswith(".wav"):
+            filepath = os.path.join(folder, file)
+            break  
+    
+    print(f"Arquivo: {filepath}")
+    y, sr = librosa.load(filepath, sr=16000)
+
+    length = len(y)/3
+    # Looks for the middle point and takes a 'duration' sample
+    for i in range(3):
+        # Makes sure the end_point < length
+        start = int(i*length)
+        time = int(sr * duration)
+        take = y[start:start+time] if start+start+time <= len(y) else y[start:]
+
+        # Saves new file
+        sf.write(f"{folder}/cut{i}.wav", take, sr)
+    
+    return filepath
+
 def trim_all_folder(folder_path):
     # Iterates over all the elements
     for filename in os.listdir(folder_path):
         if filename.endswith(".wav"):  # Verifica se o arquivo é .wav
             file_path = os.path.join(folder_path, filename)
             trim_audio(file_path)  # Chama a função para cortar o áudio
+
 
 def donwload_and_convert():
     # URL da playlist

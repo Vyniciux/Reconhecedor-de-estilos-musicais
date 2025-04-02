@@ -15,18 +15,16 @@ print("Download concluído!")
 utils.convert_mp3_to_wav(output_dir)
 print("Conversão concluída!")
 
-utils.trim_all_folder(output_dir)
-print("Corte concluído!")
+name = utils.trim_audio_3_in_parts(output_dir, 15)
+print("Dividido em partes!")
 
 processingMusic.criar_dataset('result/data')
 
 # Obtém o nome do arquivo de música na pasta 'result'
-music_file = next((f for f in os.listdir(output_dir) if f.endswith('.wav')), None)
-if music_file:
-    print(f"Música: {music_file}")
-    processingMusic.ExtractToDatabase('result/'+music_file, music_file, 'none', 'result/data')
-    classifier.test_genre('result/data.csv', music_file)
-    # Remove o arquivo de música após o processamento
-    os.remove(os.path.join(output_dir, music_file))
-else:
-    print("Nenhuma música encontrada na pasta result.")
+for filename in os.listdir(output_dir):
+    if filename.endswith(".wav"):  # Verifica se o arquivo é .wav
+        print(f"Música: {filename}")
+        processingMusic.ExtractToDatabase('result/'+filename, filename, 'none', 'result/data')
+        # Remove o arquivo de música após o processamento
+        os.remove(os.path.join(output_dir, filename))
+classifier.test_genre('result/data.csv', name[7:-4])

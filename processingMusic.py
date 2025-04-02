@@ -67,13 +67,13 @@ def MelSpectrogram(music):
     frame_length = int(0.02 * sample_rate)  # 20ms em amostras
     hop_length = int(frame_length * 0.2)  # 20% de sobreposição
 
-    n_mels=30 # Comprimento de salto
+    n_mels=13 # Comprimento de salto
     mel_spectrogram = librosa.feature.melspectrogram(y=music, sr=sample_rate, n_fft=frame_length, hop_length=hop_length, n_mels=n_mels)
 
     # Converter para uma escala logarítmica (como o Log-Mel Spectrogram)
     log_mel_spectrogram = librosa.power_to_db(mel_spectrogram, ref=np.max)
 
-    return np.mean(mel_spectrogram)
+    return np.mean(mel_spectrogram, axis=1)  # Média ao longo do tempo
 
 def ConstantQ(music):
     # Calcular o CQT
@@ -185,6 +185,7 @@ def ExtractToDatabase(audio_path, fileName, genre, db_name):
         spectral_centroid(music),
         loudness(music),
         perceptual_spread(music),
+        mfcc(music),
     )
 
     with open(db_name +'.csv', mode='a', newline='', encoding='utf-8') as arquivo_csv:
@@ -217,5 +218,6 @@ dados = {
     'spectral_centroid': [],
     'loudness': [],
     'perceptual_spread': [],
+    'mfccs': [],
     # Adicione outras características conforme necessário
 }
