@@ -1,0 +1,17 @@
+
+
+
+Ceptrais:
+    MFCCs:
+    Os Mel-Frequency Cepstrum Coefficients (MFCCs) ou coeficientes mel-cepstrais podem ser definidos como coeficientes derivados de um tipo de representação cepstral do sinal. O cepstro pode ser visto como o espectro de um espectro. Neste caso, uma escala logaritmica é usada para posicionar as bandas de frequência (ou seja, a escala de frequência é transformada para dar menos ênfase a frequências altas), o que aproxima o modelo do comportamento do sistema auditivo humano, uma vez que a percepção das frequências dos sons por seres humanos é dita não-linear.
+
+Espectrais:
+    spectral_centroid:
+        É calculado como a média ponderada das frequências presentes no sinal, determinadas por meio de uma transformada de Fourier, com suas magnitudes como pesos.
+        More precisely, the centroid at frame t is defined as 1:
+            centroid[t] = sum_k S[k, t] * freq[k] / (sum_j S[j, t])
+        where S is a magnitude spectrogram, and freq is the array of frequencies (e.g., FFT frequencies in Hz) of the rows of S.
+
+Temporais:
+    zero_crossing_rate (ZCR):
+        calcula a taxa de cruzamento por zero, ou seja, quantas vezes o sinal cruza o eixo zero ao longo do tempo.
