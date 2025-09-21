@@ -23,4 +23,4 @@ Para usar o programa execute o arquivo run.py e cole no terminal o link (youtube
 
 Nota: A mistura de gêneros e sons que exite faz com que essa não seja uma tarefa trivial, ainda mais com um número tão pequeno de dados quanto a base desse projeto, então acreditamos que com um pouco mais de dados o projeto consiga ser muito útil.
 
-Desenvolvido por: Juliana Silva, Leandro Vynicius Ramos da Silva e Thyago Soares Barbosa. Para a disciplina de Sinais e sistemas.
+Desenvolvido por: Juliana Silva, Leandro Vynicius Ramos da Silva e Thyago Barbosa Soares. Para a disciplina de Sinais e sistemas.
